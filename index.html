@@ -1,20 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    bonjour 8/10/2026
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat, laborum at assumenda dicta obcaecati repudiandae esse, temporibus error culpa, exercitationem ullam reprehenderit. Quis omnis rem autem ullam suscipit, magnam odit.</p>
-    <h2>AZERT</h2>
-    <div>
-        KLOPY
-        <ul><li>zz</li><li>ee</li></ul>
-    </div>
-    <ul><li>a</li>
-    <li>z</li>
-    <li>e</li></ul>
+ <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>Choix puzzle</title>
+	
+	<style>
+		.titre { color: #900 ; text-align: center ; font-size: 40px ;}
+		h2 {position: relative; left: 180px;}
+		#grilphoto {width: 1200px; position: relative; left: 280px; }
+		td { width: 235px ; height: 165px  ; vertical-align: middle ;text-align: center}
+		img {width: 220px  ;  height: 147px}			/* c'est la taille des vignettes dans le tableau  */
+		img:hover {width: 210px  ;  height: 137px }		/* modifie la taille de la vignette au survol  */	
+		img:active {width: 210px  ;  height: 137px ; border: 5px solid black }
+		.bouton {font-size: 40px}						/* revoit à une balise identifiée avec class  */
+		.bouton:hover {font-size: 41px}
+		body {background-color: #CCC}
+		#cadr {position: relative; left: 280px; top: -513px; width: 220px; height: 145px; border: 3px solid blue;}
+	</style>
+	
+	<script>
+		var photo= "01" ;	// porte le numéro de la photo choisie pour le puzzle ; initialisé sur photo 1
+		var duree= "180" ;	// porte la durée choisie pour la réalisation du puzzle
+		var rgvig ;			// rang de la vignette dans le tableau, valeur de 1 à 12
+		var rgx, rgy ;		// rang photo : en x  de 1 à 6 ; en y  de 1 à 2
+		
+		function pho01() {photo="01"; posicad(photo)}			// s'exécute lors de l'appui sur la photo 01   etc.
+		function pho02() {photo="02"; posicad(photo)}
+		function pho03() {photo="03"; posicad(photo)}
+		function pho04() {photo="04"; posicad(photo)}
+		function pho05() {photo="05"; posicad(photo)}
+		function pho06() {photo="06"; posicad(photo)}
+		function pho07() {photo="07"; posicad(photo)}
+		function pho08() {photo="08"; posicad(photo)}
+		function pho09() {photo="09"; posicad(photo)}
+		function pho10() {photo="10"; posicad(photo)}
+		function pho11() {photo="11"; posicad(photo)}
+		function pho12() {photo="12"; posicad(photo)}
+		
+		
+		function posicad() {
+			rgvig= Number(photo) ;					// rang de la vignette dans le tableau, valeur de 1 à 12 
+			rgx= (rgvig-1)%6 ; rgy= Math.floor((rgvig-1)/6) ;		// rgx de 0 à 5 et rgy de 0 à 1
+			posx= 280 + rgx*224 ; posy = -513 + rgy*168;
+			document.getElementById("cadr").style.left= posx + "px" ;   // positionne le cadre sur l'image (en x)
+			document.getElementById("cadr").style.top= posy + "px" ;   // positionne le cadre sur l'image (en y)
+		}
+		
+		
+		function dur1()  {duree= "60"}			// s'exécute lors de la sélection de la durée 1 sur la sélection radio
+		function dur2()  {duree= "120"}
+		function dur3()  {duree= "180"}
+		function dur4()  {duree= "240"}
+		function dur5()  {duree= "300"}
+		function dur6()  {duree= "360"}
+		function dur7()  {duree= "420"}
+		function dur8()  {duree= "480"}
+		
+		function lancer() {window.open("puzzle v1.html?"+duree+";"+photo+";","PopUp", "width=1600,height=900", "location=no,status=no,toolbar=no,scrollbars=no");}
+			// cette fonction s'exécute lors de l'appui sur le bouton Lancer le puzzle ; elle ouvre la page puzzle dans une nouvelle fenêtre en passant les paramètres duree et photo
+	</script>
+	
+ </head>
+ 
+ <body>
+	<p class="titre">LANCEMENT D'UN PUZZLE</p>
+   
+	<h2>1- Sélectionner un puzzle</h2>
+	<br>
+	<table id="grilphoto">		<!-- tableau contenant les 3x8 vignettes des photos de puzzles    -->
+		<tr>
+				<td><IMG SRC="photo01.jpg"  onClick="pho01()"></td> <td><IMG SRC="photo02.jpg"  onClick="pho02()"></td>
+				<td><IMG SRC="photo03.jpg"  onClick="pho03()"></td> <td><IMG SRC="photo04.jpg"  onClick="pho04()"></td>
+				<td><IMG SRC="photo05.jpg"  onClick="pho05()"></td> <td><IMG SRC="photo06.jpg"  onClick="pho06()"></td>
+		</tr>
+		<tr>
+				<td><IMG SRC="photo07.jpg"  onClick="pho07()"></td> <td><IMG SRC="photo08.jpg"  onClick="pho08()"></td>
+				<td><IMG SRC="photo09.jpg"  onClick="pho09()"></td> <td><IMG SRC="photo10.jpg"  onClick="pho10()"></td>
+				<td><IMG SRC="photo11.jpg"  onClick="pho11()"></td> <td><IMG SRC="photo12.jpg"  onClick="pho12()"></td>
+		</tr>
+	</table>
+	<br><br>
+	
+	<h2>2- Sélectionnez une durée</h2>
+	
+	<form style="position: relative; left: 270px;">		<!--  formulaire contenant les 8 choix de durée +  bouton de lancement   -->
+	<input type="radio" name="chxdur" onClick="dur1()">    1mn &nbsp &nbsp &nbsp
+	<input type="radio" name="chxdur" onClick="dur2()">    2mn &nbsp &nbsp &nbsp
+	<input type="radio" name="chxdur" onClick="dur3()" checked>    3mn &nbsp &nbsp &nbsp
+	<input type="radio" name="chxdur" onClick="dur4()">    4mn &nbsp &nbsp &nbsp 
+	<input type="radio" name="chxdur" onClick="dur5()">    5mn &nbsp &nbsp &nbsp 
+	<input type="radio" name="chxdur" onClick="dur6()">    6mn &nbsp &nbsp &nbsp 
+	<input type="radio" name="chxdur" onClick="dur7()">    7mn &nbsp &nbsp &nbsp 
+	<input type="radio" name="chxdur" onClick="dur8()">    8mn &nbsp &nbsp &nbsp
+	&nbsp &nbsp	&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp	&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp          
+	<input class="bouton" type= "button" value="Lancer le puzzle" onClick= "lancer()" >	
+	</form>
+
+	<div id="cadr"></div>     <!--  Cadre mobile de sélection d'image  -->
+
 </body>
 </html>
